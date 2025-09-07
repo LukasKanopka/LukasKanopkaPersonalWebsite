@@ -1,0 +1,224 @@
+/* RetroUI Button Component */
+.retro-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border: 2px solid;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.retro-btn:focus-visible {
+    outline: 2px solid;
+    outline-offset: 2px;
+}
+
+.retro-btn:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Button Sizes */
+.retro-btn-sm {
+    height: 2.25rem;
+    padding: 0 0.75rem;
+    font-size: 0.75rem;
+}
+
+.retro-btn-default {
+    height: 2.5rem;
+    padding: 0 1rem;
+}
+
+.retro-btn-lg {
+    height: 2.75rem;
+    padding: 0 2rem;
+    font-size: 1rem;
+}
+
+.retro-btn-icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0;
+}
+
+/* Button Variants */
+.retro-btn-default {
+    background: #ff6b35;
+    border-color: #ff6b35;
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+}
+
+.retro-btn-default:hover {
+    background: #e55a2b;
+    border-color: #e55a2b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+}
+
+.retro-btn-destructive {
+    background: #dc2626;
+    border-color: #dc2626;
+    color: white;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
+}
+
+.retro-btn-destructive:hover {
+    background: #b91c1c;
+    border-color: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.3);
+}
+
+.retro-btn-outline {
+    background: transparent;
+    border-color: #ff6b35;
+    color: #ff6b35;
+}
+
+.retro-btn-outline:hover {
+    background: #ff6b35;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.retro-btn-secondary {
+    background: transparent;
+    border-color: #4ecdc4;
+    color: #4ecdc4;
+}
+
+.retro-btn-secondary:hover {
+    background: #4ecdc4;
+    color: #0f0f23;
+    transform: translateY(-2px);
+}
+
+.retro-btn-ghost {
+    background: transparent;
+    border-color: #333333;
+    color: #a0a0a0;
+}
+
+.retro-btn-ghost:hover {
+    border-color: #ff6b35;
+    color: #ff6b35;
+}
+
+.retro-btn-link {
+    background: transparent;
+    border-color: transparent;
+    color: #ff6b35;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.retro-btn-link:hover {
+    color: #e55a2b;
+    text-decoration: none;
+}
+
+/* Shine effect */
+.retro-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.retro-btn:hover::before {
+    left: 100%;
+}
+
+/* Glow effect for primary buttons */
+.retro-btn-default,
+.retro-btn-destructive {
+    position: relative;
+}
+
+.retro-btn-default::after,
+.retro-btn-destructive::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(45deg, currentColor, transparent, currentColor);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.retro-btn-default:hover::after,
+.retro-btn-destructive:hover::after {
+    opacity: 0.3;
+}
+
+/* Loading state */
+.retro-btn-loading {
+    color: transparent;
+}
+
+.retro-btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: retro-btn-spin 1s linear infinite;
+}
+
+@keyframes retro-btn-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Focus styles */
+.retro-btn:focus-visible {
+    outline: 2px solid #ff6b35;
+    outline-offset: 2px;
+}
+
+/* Active state */
+.retro-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 107, 53, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .retro-btn {
+        font-size: 0.75rem;
+    }
+    
+    .retro-btn-lg {
+        height: 2.5rem;
+        font-size: 0.875rem;
+    }
+}

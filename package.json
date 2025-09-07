@@ -1,0 +1,19 @@
+{
+  "name": "lukas-kanopka-portfolio",
+  "version": "1.0.0",
+  "description": "Personal website for Lukas Kanopka using RetroUI design system",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx live-server --port=3000 --open=/ --watch=. --ignore=node_modules",
+    "start": "npx live-server --port=3000 --open=/ --watch=. --ignore=node_modules",
+    "build": "echo 'Static site - no build process required'",
+    "install-dev": "npm install",
+    "serve": "npx live-server --port=8080 --no-browser"
+  },
+  "keywords": ["portfolio", "personal-website", "retroui"],
+  "author": "Lukas Kanopka",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
