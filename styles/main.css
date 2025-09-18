@@ -1089,3 +1089,25 @@ html {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-dark);
 }
+/* ===== Header Color Lock (Always White) ===== */
+.navbar .logo-text,
+.navbar .nav-link,
+.navbar .nav-link:visited,
+.navbar .nav-link:active,
+.navbar .nav-link.active {
+  color: #ffffff !important;
+}
+
+.navbar .nav-link:hover {
+  color: #ffffff !important;
+}
+
+/* Keep underline indicator white as well */
+.navbar .nav-link::after {
+  background: #ffffff !important;
+}
+
+/* Hamburger bars should remain white */
+.navbar .bar {
+  background: #ffffff !important;
+}
