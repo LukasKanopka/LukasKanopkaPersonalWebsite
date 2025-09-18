@@ -91,9 +91,12 @@
     background: #ff6b35;
     color: white;
     transform: translateY(-2px);
-}
+}s
 
 .retro-btn-secondary {
+background: #4ecdc4;
+    color: #0f0f23;
+
     background: transparent;
     border-color: #4ecdc4;
     color: #4ecdc4;
