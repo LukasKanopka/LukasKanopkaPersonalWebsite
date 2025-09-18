@@ -1161,3 +1161,98 @@ html {
 .experience .exp-desc {
     color: var(--text-secondary);
 }
+/* ===================== */
+/* Experience Section    */
+/* ===================== */
+
+.experience {
+  padding: var(--spacing-20) 0;
+}
+
+.experience-list {
+  display: grid;
+  gap: var(--spacing-6);
+}
+
+.experience-item {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6) var(--spacing-6) var(--spacing-6) calc(80px + var(--spacing-6));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: var(--transition);
+}
+
+.experience-item:hover {
+  box-shadow: 0 10px 30px var(--shadow);
+  transform: translateY(-2px);
+}
+
+/* Decorative company logo on left with yellow glow */
+.experience-item::before {
+  content: "";
+  position: absolute;
+  left: var(--spacing-6);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 64px;
+  height: 64px;
+  background-image: url('../images/swimageBlack.png'); /* note: path is relative to styles/main.css */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  /* Yellow glow using drop-shadow */
+  }
+
+/* Header layout and text styling */
+.experience-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-3);
+  flex-wrap: wrap;
+}
+
+.experience .role {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.experience .company {
+  margin-left: var(--spacing-3);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.experience .period {
+  margin-left: auto; /* push to right edge on same line */
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.experience .exp-desc {
+  margin-top: var(--spacing-3);
+  color: var(--text-secondary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .experience-item {
+    padding: var(--spacing-5) var(--spacing-5) var(--spacing-5) calc(56px + var(--spacing-5));
+  }
+  .experience-item::before {
+    left: var(--spacing-4);
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .experience-item,
+  .experience-item:hover {
+    transform: none;
+    transition: none;
+  }
+}
