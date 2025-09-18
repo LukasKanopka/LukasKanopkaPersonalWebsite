@@ -280,12 +280,12 @@ Tools: Git, Docker, AWS, VS Code
 Currently learning: Rust, WebAssembly 🦀`,
     contact: () => {
         console.log('DEBUG: Current contact command called');
-        console.log('DEBUG: Current email: lukas@example.com');
-        console.log('DEBUG: Current LinkedIn: linkedin.com/in/lukaskanopka');
+        console.log('DEBUG: Current email: lukaskanopka@icloud.com');
+        console.log('DEBUG: Current LinkedIn: linkedin.com/in/laurynaskanopka');
         console.log('DEBUG: Current GitHub: github.com/LukasKanopka');
-        return `📧 lukas@example.com
+        return `📧 lukaskanopka@icloud.com
 🐙 github.com/LukasKanopka
-💼 linkedin.com/in/lukaskanopka
+💼 linkedin.com/in/laurynaskanopka
 💬 Always open to interesting opportunities!`;
     },
     clear: () => {
@@ -322,10 +322,13 @@ Memory: Unlimited Creative Capacity`;
 ├── About
 │   ├── Skills Overview
 │   └── Tech Stack
+├── Experience
+│   ├── Swimage — Software Engineer
+│   └── Swimage — Full Stack Software Engineer Intern
 ├── Projects
-│   ├── E-Commerce Platform
-│   ├── Task Management App
-│   └── Weather Dashboard
+│   ├── ClipAndTrim.io
+│   ├── GatorBeachVolleyball.com
+│   └── GPT Model
 ├── Contact
 │   ├── Email
 │   ├── GitHub

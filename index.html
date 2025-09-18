@@ -15,7 +15,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <span class="logo-text">LK</span>
+                <span class="logo-text">Lukas Kanopka</span>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
@@ -23,6 +23,9 @@
                 </li>
                 <li class="nav-item">
                     <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#experience" class="nav-link">Experience</a>
                 </li>
                 <li class="nav-item">
                     <a href="#projects" class="nav-link">Projects</a>
@@ -141,80 +144,100 @@
         </div>
     </section>
 
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="role">Software Engineer</h3>
+                        <span class="company">Swimage</span>
+                        <span class="period">Aug 2025 – Present</span>
+                    </div>
+                    <p class="exp-desc">Building OS migration and disaster recovery solutions.</p>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="role">Full Stack Software Engineer Intern</h3>
+                        <span class="company">Swimage</span>
+                        <span class="period">Jun 2025 – Aug 2025</span>
+                    </div>
+                    <p class="exp-desc">Built Python data pipelines and multi-tenant auth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
+                <!-- ClipAndTrim.io -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <h3 class="project-title">ClipAndTrim.io</h3>
                         <div class="project-status">
                             <span class="status-dot active"></span>
                             <span class="status-text">Live</span>
                         </div>
                     </div>
                     <p class="project-description">
-                        A full-stack e-commerce solution built with React and Node.js, featuring 
-                        real-time inventory management and secure payment processing.
+                        Create, preview, and download clips from YouTube timestamps with a FastAPI + FFmpeg backend and React frontend.
                     </p>
                     <div class="project-tech">
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">FFmpeg</span>
                         <span class="tech-tag">React</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Supabase</span>
                         <span class="tech-tag">Stripe</span>
                     </div>
                     <div class="project-links">
-                        <button class="btn btn-outline">View Demo</button>
-                        <button class="btn btn-ghost">Source Code</button>
+                        <a class="btn btn-outline" href="https://clipandtrim.io" target="_blank" rel="noopener noreferrer">Visit Site</a>
                     </div>
                 </div>
 
+                <!-- GatorBeachVolleyball.com -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3 class="project-title">Task Management App</h3>
+                        <h3 class="project-title">GatorBeachVolleyball.com</h3>
                         <div class="project-status">
                             <span class="status-dot active"></span>
                             <span class="status-text">Live</span>
                         </div>
                     </div>
                     <p class="project-description">
-                        A collaborative task management application with real-time updates, 
-                        drag-and-drop functionality, and team collaboration features.
+                        Tournament management app with schedules, pools, and live standings; automated imports and bracket generation.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">Vue.js</span>
-                        <span class="tech-tag">Express</span>
-                        <span class="tech-tag">Socket.io</span>
-                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Supabase</span>
                     </div>
                     <div class="project-links">
-                        <button class="btn btn-outline">View Demo</button>
-                        <button class="btn btn-ghost">Source Code</button>
+                        <a class="btn btn-outline" href="https://gatorbeachvolleyball.com" target="_blank" rel="noopener noreferrer">Visit Site</a>
                     </div>
                 </div>
 
+                <!-- GPT Model -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3 class="project-title">Weather Dashboard</h3>
+                        <h3 class="project-title">GPT Model</h3>
                         <div class="project-status">
                             <span class="status-dot development"></span>
-                            <span class="status-text">In Development</span>
+                            <span class="status-text">Project</span>
                         </div>
                     </div>
                     <p class="project-description">
-                        A beautiful weather dashboard with interactive maps, forecasts, 
-                        and personalized weather alerts using modern web APIs.
+                        Implemented a modular GPT model from scratch in PyTorch with efficient training and regularization.
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">D3.js</span>
-                        <span class="tech-tag">Weather API</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NLP</span>
                     </div>
                     <div class="project-links">
-                        <button class="btn btn-outline">Coming Soon</button>
-                        <button class="btn btn-ghost">Source Code</button>
+                        <button class="btn btn-ghost" disabled>Details</button>
                     </div>
                 </div>
             </div>
