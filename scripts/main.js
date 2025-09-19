@@ -271,13 +271,12 @@ const terminalBody = document.querySelector('.terminal-body');
 
 // Available commands
 const commands = {
-    help: () => 'Available commands: help, whoami, skills, contact, clear, date, echo [text], neofetch, tree, fortune, weather, crypto',
-    whoami: () => 'lukas@portfolio:~$ Full Stack Developer & Creative Problem Solver\n🚀 Building the future, one commit at a time',
-    skills: () => `Frontend: React, Vue.js, TypeScript, CSS3, HTML5
-Backend: Node.js, Python, Express, FastAPI
-Database: MongoDB, PostgreSQL, Redis
-Tools: Git, Docker, AWS, VS Code
-Currently learning: Rust, WebAssembly 🦀`,
+    help: () => 'Available commands: help, whoami, skills, contact, clear, date, echo [text], neofetch',
+    whoami: () => 'Software Engineer @ Swimage | Full‑Stack Developer',
+    skills: () => `Frontend: React, Vue, TypeScript
+Backend: Node.js, Python, FastAPI
+DB: PostgreSQL, MS SQL
+Tools: Git, Docker, AWS, VS Code`,
     contact: () => {
         console.log('DEBUG: Current contact command called');
         console.log('DEBUG: Current email: lukaskanopka@icloud.com');
@@ -305,73 +304,14 @@ Currently learning: Rust, WebAssembly 🦀`,
     ███████╗╚██████╔╝██║  ██╗██║  ██║███████║
     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 
-OS: Portfolio v2.0.25 (Retro Edition)
-Host: Creative Workstation Pro
-Kernel: JavaScript ES2024
+OS: Portfolio v2025.09.15
+Host: Lukas Kanopka's Mac Mini
+Kernel: 24.5.0
 Uptime: ${uptime} seconds
-Shell: InteractiveCLI 1.0
-Resolution: Responsive Design
-Theme: RetroUI [Dark/Light/Synthwave/Miami/Arcade/Neon/Yellow]
-CPU: Problem Solving Unit (8-core)
-Memory: Unlimited Creative Capacity`;
-    },
-    tree: () => `Portfolio Structure:
-├── Home
-│   ├── Hero Section
-│   └── Interactive Terminal
-├── About
-│   ├── Skills Overview
-│   └── Tech Stack
-├── Experience
-│   ├── Swimage — Software Engineer
-│   └── Swimage — Full Stack Software Engineer Intern
-├── Projects
-│   ├── ClipAndTrim.io
-│   ├── GatorBeachVolleyball.com
-│   └── GPT Model
-├── Contact
-│   ├── Email
-│   ├── GitHub
-│   └── LinkedIn
-└── Themes
-    ├── Dark (Original)
-    ├── Light
-    ├── Synthwave
-    ├── Miami Vice
-    ├── Arcade
-    ├── Neon
-    └── Yellow Light`,
-    fortune: () => {
-        const fortunes = [
-            "💡 \"Code is like humor. When you have to explain it, it's bad.\" - Cory House",
-            "🚀 \"The best time to plant a tree was 20 years ago. The second best time is now.\" - Chinese Proverb",
-            "⚡ \"First, solve the problem. Then, write the code.\" - John Johnson",
-            "🎯 \"Experience is the name everyone gives to their mistakes.\" - Oscar Wilde",
-            "🔥 \"The only way to learn a new programming language is by writing programs in it.\" - Dennis Ritchie",
-            "💻 \"Talk is cheap. Show me the code.\" - Linus Torvalds",
-            "🌟 \"Simplicity is the ultimate sophistication.\" - Leonardo da Vinci"
-        ];
-        return fortunes[Math.floor(Math.random() * fortunes.length)];
-    },
-    weather: () => {
-        const conditions = ['☀️ Sunny', '⛅ Partly Cloudy', '🌧️ Rainy', '❄️ Snowy', '🌈 Perfect'];
-        const temp = Math.floor(Math.random() * 30) + 10;
-        const condition = conditions[Math.floor(Math.random() * conditions.length)];
-        return `🌍 Current Weather in Code Land:
-${condition} ${temp}°C
-Humidity: ${Math.floor(Math.random() * 40) + 40}%
-Wind: ${Math.floor(Math.random() * 15) + 5} km/h
-Perfect coding weather! ☕`;
-    },
-    crypto: () => {
-        const coins = [
-            { name: 'Bitcoin', symbol: 'BTC', price: (Math.random() * 10000 + 40000).toFixed(2) },
-            { name: 'Ethereum', symbol: 'ETH', price: (Math.random() * 1000 + 2000).toFixed(2) },
-            { name: 'Solana', symbol: 'SOL', price: (Math.random() * 50 + 100).toFixed(2) }
-        ];
-        return `💰 Crypto Prices (Simulated):
-${coins.map(coin => `${coin.symbol}: $${coin.price}`).join('\n')}
-⚠️  Not financial advice! DYOR 📈`;
+Shell: PortfolioCLI v 1.2.1
+Resolution: 720x360
+CPU: Apple M4
+Memory: 2485MiB / 16384MiB`;
     }
 };
 
@@ -450,7 +390,7 @@ function initTerminalAnimation() {
         { element: '.terminal-line:nth-child(1) .command', text: 'echo "Hi I\'m Lukas!"', delay: 1000, typed: true },
         { element: '.terminal-line:nth-child(2) .output', text: 'Hi I\'m Lukas!', delay: 2000, typed: false },
         { element: '.terminal-line:nth-child(3) .command', text: 'help', delay: 3500, typed: true },
-        { element: '.terminal-line:nth-child(4) .output', text: 'Available commands: help, whoami, skills, contact, clear, date, echo [text], neofetch, tree, fortune, weather, crypto', delay: 4500, typed: false }
+        { element: '.terminal-line:nth-child(4) .output', text: 'Available commands: help, whoami, skills, contact, clear, date, echo [text], neofetch', delay: 4500, typed: false }
     ];
 
     // Reset terminal content

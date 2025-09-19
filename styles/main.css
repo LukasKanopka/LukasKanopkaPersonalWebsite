@@ -346,6 +346,12 @@ body {
     font-weight: 500;
 }
 
+.terminal-line .output {
+    white-space: pre;
+    display: block;
+    font-family: var(--font-mono);
+}
+
 .terminal-body {
     max-height: 300px;
     overflow-y: auto;
