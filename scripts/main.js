@@ -557,16 +557,24 @@ document.addEventListener('DOMContentLoaded', () => {
         initTerminalAnimation();
     }, 1500);
     
-    // Add click handlers for project buttons
+    // Add click handlers for project buttons (only intercept non-links or "coming soon" UI)
     document.querySelectorAll('.project-card .btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.preventDefault();
+            const isAnchor = btn.tagName.toLowerCase() === 'a';
             const buttonText = btn.textContent.trim();
-            
-            if (buttonText === 'Coming Soon') {
-                showNotification('This project is still in development. Stay tuned!', 'info');
-            } else if (buttonText === 'View Demo' || buttonText === 'Source Code') {
-                showNotification('Demo links will be available soon!', 'info');
+
+            // If it's an anchor with an href, let the browser handle navigation
+            if (isAnchor && btn.getAttribute('href')) {
+                return;
+            }
+
+            // Intercept non-link buttons or "coming soon" placeholders
+            if (btn.disabled || buttonText === 'Coming Soon' || buttonText === 'View Demo' || buttonText === 'Source Code') {
+                e.preventDefault();
+                const message = btn.disabled || buttonText === 'Coming Soon'
+                    ? 'This project is still in development. Stay tuned!'
+                    : 'Demo links will be available soon!';
+                showNotification(message, 'info');
             }
         });
     });
@@ -591,6 +599,56 @@ document.addEventListener('DOMContentLoaded', () => {
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         revealObserver.observe(element);
     });
+
+    // GPT Model Details Modal behavior
+    const gptDetailsBtn = document.getElementById('gpt-details-btn');
+    const gptModal = document.getElementById('gpt-modal');
+    if (gptDetailsBtn && gptModal) {
+        const modalCloseBtn = gptModal.querySelector('.modal-close');
+        const modalTitle = gptModal.querySelector('#gpt-modal-title');
+
+        const openModal = () => {
+            gptModal.classList.add('open');
+            gptModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            // Focus heading for accessibility
+            setTimeout(() => {
+                if (modalTitle && typeof modalTitle.focus === 'function') {
+                    modalTitle.setAttribute('tabindex', '-1');
+                    modalTitle.focus();
+                }
+            }, 0);
+        };
+
+        const closeModal = () => {
+            gptModal.classList.remove('open');
+            gptModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        };
+
+        gptDetailsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal();
+        });
+
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeModal);
+        }
+
+        // Close when clicking outside content
+        gptModal.addEventListener('click', (e) => {
+            if (e.target === gptModal) {
+                closeModal();
+            }
+        });
+
+        // ESC to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && gptModal.classList.contains('open')) {
+                closeModal();
+            }
+        });
+    }
 });
 
 // Keyboard navigation

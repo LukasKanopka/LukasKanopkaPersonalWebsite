@@ -236,7 +236,7 @@
                         <span class="tech-tag">NLP</span>
                     </div>
                     <div class="project-links">
-                        <button class="btn btn-ghost" disabled>Details</button>
+                        <a class="btn btn-outline" id="gpt-details-btn" href="#">Details</a>
                     </div>
                 </div>
                 <!-- Spotify Floater -->
@@ -340,6 +340,18 @@
             </div>
         </div>
     </footer>
+
+    <!-- GPT Model Details Modal -->
+    <div id="gpt-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="gpt-modal-title">
+            <button class="modal-close" aria-label="Close">&times;</button>
+            <h3 id="gpt-modal-title">Generative Pretrained Transformer (GPT) Model</h3>
+            <ul class="modal-list">
+                <li>Developed a fully functional GPT model from scratch in PyTorch, translating the "Attention Is All You Need" research paper into a modular and well-documented codebase.</li>
+                <li>Engineered an efficient training loop with batch processing and dropout regularization, resulting in a 15% reduction in validation loss and improved performance.</li>
+            </ul>
+        </div>
+    </div>
 
     <script src="scripts/main.js"></script>
 </body>
