@@ -263,34 +263,37 @@ function initTerminal() {
 
   const banner = () => {
     return [
-      "┌───────────────────────────────┐",
-      "│             LUKAS              │",
-      "├───────────────────────────────┤",
-      "│  type 'help' to explore        │",
-      "└───────────────────────────────┘",
+      "██╗     ██╗   ██╗██╗  ██╗ █████╗ ███████╗",
+      "██║     ██║   ██║██║ ██╔╝██╔══██╗██╔════╝",
+      "██║     ██║   ██║█████╔╝ ███████║███████╗",
+      "██║     ██║   ██║██╔═██╗ ██╔══██║╚════██║",
+      "███████╗╚██████╔╝██║  ██╗██║  ██║███████║",
+      "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝",
+      "",
+      "Type 'help' to explore.",
     ].join("\n");
   };
 
   const helpText = () => {
     return [
-      "Commands",
-      "  • help — show this help",
-      "  • whoami — quick summary",
-      "  • stats — metrics snapshot",
-      "  • skills — skills overview",
-      "  • experience — work experience summary",
-      "  • projects — project shortlist",
-      "  • writing — publication + link",
-      "  • contact — contact methods",
-      "  • resume — open resume PDF",
-      "  • go <section> — jump (home/about/experience/projects/writing/contact/cta)",
-      "  • open <thing> — open (resume/graphrag/clipandtrim/gator/github/linkedin)",
-      "  • copy <thing> — copy (email/github/linkedin)",
-      "  • clear — clear terminal",
-      "  • banner — show banner art",
+      "Commands:",
+      "  help           - show this help",
+      "  whoami         - quick summary",
+      "  stats          - metrics snapshot",
+      "  skills         - skills overview",
+      "  experience     - work experience summary",
+      "  projects       - project shortlist",
+      "  writing        - publication + link",
+      "  contact        - contact methods",
+      "  resume         - open resume PDF",
+      "  go <section>   - jump (home/about/experience/projects/writing/contact/cta)",
+      "  open <thing>   - open (resume/graphrag/clipandtrim/gator/github/linkedin)",
+      "  copy <thing>   - copy (email/github/linkedin)",
+      "  clear          - clear terminal",
+      "  banner         - show banner art",
       "",
-      "Tips",
-      "  • Enter runs • Tab completes • ↑/↓ history",
+      "Tips:",
+      "  Enter runs; Tab completes; Up/Down history",
     ].join("\n");
   };
 
@@ -306,7 +309,7 @@ function initTerminal() {
       "40% faster API responses (Swimage)",
       "80% less manual work (classification pipeline)",
       "20× faster encoding (ClipAndTrim)",
-      "3.96 GPA (UF, CS • Minor Statistics)",
+      "3.96 GPA (UF, CS - Minor Statistics)",
     ].join("\n");
 
   const skillsText = () =>
@@ -345,7 +348,7 @@ function initTerminal() {
   const writingText = () =>
     [
       "GraphRAG: A Massive Leap in LLM Real-World Intelligence",
-      "Intelligence • Q4 2025",
+      "Intelligence - Q4 2025",
       "",
       "Open it: open graphrag",
     ].join("\n");
@@ -462,7 +465,7 @@ function initTerminal() {
   const printIntro = async () => {
     addBlock("output", banner());
     addDivider();
-    addBlock("output", "Try: help • go projects • open resume • copy email");
+    addBlock("output", "Try: help | go projects | open resume | copy email");
   };
 
   input.addEventListener("keydown", (event) => {
