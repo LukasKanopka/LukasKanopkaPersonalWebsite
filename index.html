@@ -3,352 +3,515 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lukas Kanopka - Portfolio</title>
+    <meta name="description" content="Detail-oriented software engineer specializing in full-stack development (Python, FastAPI, Vue.js) and applied machine learning." />
+    <title>Lukas Kanopka — Software Engineer</title>
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="components/button.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-text">Lukas Kanopka</span>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#experience" class="nav-link">Experience</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+    <a class="skip-link" href="#content">Skip to content</a>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="retro-text">Hello, I'm</span>
-                    <span class="hero-name">Lukas Kanopka</span>
-                </h1>
-                <p class="hero-subtitle">Full Stack Developer & Creative Problem Solver</p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="scrollToSection('projects')">
-                        View My Work
-                    </button>
-                    <button class="btn btn-secondary" onclick="scrollToSection('contact')">
-                        Get In Touch
-                    </button>
+    <header class="site-header" role="banner">
+        <nav class="navbar" aria-label="Primary">
+            <div class="container nav-inner">
+                <a class="brand" href="#home" aria-label="Lukas Kanopka home">
+                    <span class="brand-mark" aria-hidden="true">
+                        <span class="mark mark--circle"></span>
+                        <span class="mark mark--square"></span>
+                        <span class="mark mark--triangle"></span>
+                    </span>
+                    <span class="brand-name">Lukas Kanopka</span>
+                </a>
+
+                <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="sr-only">Open menu</span>
+                    <span class="nav-toggle-bars" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </span>
+                </button>
+
+                <div class="nav-menu" id="nav-menu">
+                    <ul class="nav-links">
+                        <li><a class="nav-link" href="#home">Home</a></li>
+                        <li><a class="nav-link" href="#about">About</a></li>
+                        <li><a class="nav-link" href="#experience">Experience</a></li>
+                        <li><a class="nav-link" href="#projects">Projects</a></li>
+                        <li><a class="nav-link" href="#writing">Writing</a></li>
+                        <li><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                    <a class="btn btn--blue btn--pill nav-resume" href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="retro-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-buttons">
-                            <span class="btn-close"></span>
-                            <span class="btn-minimize"></span>
-                            <span class="btn-maximize"></span>
-                        </div>
-                        <span class="terminal-title">lukas@portfolio:~$</span>
+        </nav>
+    </header>
+
+    <main id="content">
+        <!-- HERO -->
+        <section id="home" class="section hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="overline">Software Engineer</p>
+                    <h1 class="display">Lukas Kanopka</h1>
+                    <p class="lead">Full-stack (Python/FastAPI/Vue) + applied machine learning.</p>
+
+                    <div class="cta-row">
+                        <a class="btn btn--red btn--square" href="#projects">View Projects</a>
+                        <a class="btn btn--outline btn--square" href="#contact">Get In Touch</a>
+                        <a class="btn btn--blue btn--square" href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
                     </div>
-                    <div class="terminal-body">
-                        <div class="terminal-line">
-                            <span class="prompt">$</span>
-                            <span class="command">whoami</span>
-                        </div>
-                        <div class="terminal-line">
-                            <span class="output">Software Engineer @ Swimage | Full‑Stack Developer</span>
-                        </div>
-                        <div class="terminal-line">
-                            <span class="prompt">$</span>
-                            <span class="command">help</span>
-                        </div>
-                        <div class="terminal-line">
-                            <span class="output">Available commands: help, whoami, skills, contact, clear, date, echo [text], neofetch</span>
-                        </div>
-                        <div class="terminal-line terminal-input-line">
-                            <span class="prompt">$</span>
-                            <input type="text" class="terminal-input" id="terminal-input" placeholder="Type a command..." autocomplete="off" spellcheck="false">
-                            <span class="cursor">_</span>
+
+                    <div class="hero-badges" aria-label="Highlights">
+                        <span class="tag tag--outline">40% faster APIs</span>
+                        <span class="tag tag--outline">80% less manual work</span>
+                        <span class="tag tag--outline">20× faster encoding</span>
+                    </div>
+                </div>
+
+                <div class="hero-panel section--blue">
+                    <div class="composition" id="hero-composition" aria-label="Interactive geometric composition">
+                        <button class="shape shape--circle is-active" type="button" data-shape="circle" aria-label="Highlight circle"></button>
+                        <button class="shape shape--square" type="button" data-shape="square" aria-label="Highlight square"></button>
+                        <button class="shape shape--square-rot" type="button" data-shape="rot" aria-label="Highlight rotated square"></button>
+                        <button class="shape shape--triangle" type="button" data-shape="tri" aria-label="Highlight triangle"></button>
+                        <div class="composition-caption" aria-hidden="true">
+                            Move / tap shapes
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="about-description">
-                        Hey! My name's Lukas Kanopka. I'm a Senior Studying Computer Science and Statistics at the Univeristy of Florida (Go Gators!!!). I love building full stack solutions that solve real-world problems, and love that I have the opportunity to do this through my personal projects and through my work at Swimage. I'm also extremely interested in anything Machine Learning, AI, and Data Science related, and have been working on a few personal projects in this space. When I'm not coding, I enjoy playing any form of volleyball, and traveling to new places.
-                    </p>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h3>Frontend</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">React</span>
-                                <span class="skill-tag">JavaScript</span>
-                                <span class="skill-tag">TypeScript</span>
-                                <span class="skill-tag">CSS3</span>
-                                <span class="skill-tag">HTML5</span>
+        <!-- STATS -->
+        <section id="stats" class="section section--yellow">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Proof, Not Noise</h2>
+                    <p class="section-subtitle">A few numbers I’m proud of.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="card card--decor-red stat">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">Faster API responses (Swimage)</div>
+                    </div>
+                    <div class="card card--decor-blue stat">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">Manual work reduced (pipeline)</div>
+                    </div>
+                    <div class="card card--decor-yellow stat">
+                        <div class="stat-number">20×</div>
+                        <div class="stat-label">Faster encoding (ClipAndTrim)</div>
+                    </div>
+                    <div class="card card--decor-red stat">
+                        <div class="stat-number">3.96</div>
+                        <div class="stat-label">UF GPA (CS, Minor Stats)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="section pattern-dots">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">About</h2>
+                    <p class="section-subtitle">Form follows function—so does my work.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="card card--decor-blue about-card">
+                        <h3 class="card-title">Hello.</h3>
+                        <p class="card-body">
+                            I’m Lukas, a University of Florida Computer Science student (minor in Statistics) who loves building end-to-end products.
+                            I’ve shipped full-stack systems in production, integrated LLM APIs into real workflows, and I care deeply about performance and clean UX.
+                            Outside of coding, you’ll usually find me playing volleyball or traveling.
+                        </p>
+                    </div>
+
+                    <div class="card card--decor-red about-card">
+                        <h3 class="card-title">Education</h3>
+                        <p class="card-body">
+                            <strong>University of Florida</strong> — B.S. Computer Science, Minor in Statistics<br />
+                            <span class="muted">Expected May 2026 • GPA 3.96</span>
+                        </p>
+                        <div class="tag-row" aria-label="Coursework">
+                            <span class="tag">NLP</span>
+                            <span class="tag">Operating Systems</span>
+                            <span class="tag">Data Structures</span>
+                            <span class="tag">Algorithms</span>
+                            <span class="tag">Statistical Modeling</span>
+                            <span class="tag">Regression</span>
+                        </div>
+                    </div>
+
+                    <div class="card card--decor-yellow about-card">
+                        <h3 class="card-title">Skills</h3>
+                        <div class="skills-columns">
+                            <div class="skills-col">
+                                <div class="skills-kicker">Languages</div>
+                                <div class="tag-row">
+                                    <span class="tag">Python</span><span class="tag">Java</span><span class="tag">C++</span><span class="tag">SQL</span><span class="tag">R</span><span class="tag">JavaScript</span>
+                                </div>
+                            </div>
+                            <div class="skills-col">
+                                <div class="skills-kicker">Web</div>
+                                <div class="tag-row">
+                                    <span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">Vue.js</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Pydantic</span><span class="tag">SQLAlchemy</span>
+                                </div>
+                            </div>
+                            <div class="skills-col">
+                                <div class="skills-kicker">Tools / Cloud / ML</div>
+                                <div class="tag-row">
+                                    <span class="tag">Git</span><span class="tag">Docker</span><span class="tag">Google Cloud</span><span class="tag">DigitalOcean</span><span class="tag">Netlify</span><span class="tag">PyTorch</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">SpaCy</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="skill-category">
-                            <h3>Backend</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Node.js</span>
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">Express</span>
-                                <span class="skill-tag">MongoDB</span>
-                                <span class="skill-tag">PostgreSQL</span>
-                            </div>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Tools</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Git</span>
-                                <span class="skill-tag">Docker</span>
-                                <span class="skill-tag">AWS</span>
-                                <span class="skill-tag">VS Code</span>
-                                <span class="skill-tag">Figma</span>
-                            </div>
+                    </div>
+
+                    <div class="card card--decor-blue about-card">
+                        <h3 class="card-title">Leadership & Involvement</h3>
+                        <ul class="bullets">
+                            <li>UF Ignite Student Innovation — Member</li>
+                            <li>UF Men’s Club Volleyball — Head of Merchandise (2024–25)</li>
+                            <li>UF Women’s Gator Volleyball — Volunteer Practice Player (2024–Present)</li>
+                        </ul>
+                    </div>
+
+                    <div class="card card--decor-red about-card">
+                        <h3 class="card-title">Certifications</h3>
+                        <div class="tag-row">
+                            <span class="tag">Supervised Machine Learning (DeepLearning.AI & Stanford)</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Work Experience</h2>
-            <div class="experience-list">
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="role">Software Engineer</h3>
-                        <span class="company">Swimage</span>
-                        <span class="period">Aug 2025 – Present</span>
-                    </div>
-                    <p class="exp-desc">Building OS migration and disaster recovery solutions.</p>
+        <!-- EXPERIENCE -->
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Experience</h2>
+                    <p class="section-subtitle">Built to ship. Built to scale.</p>
                 </div>
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="role">Full Stack Software Engineer Intern</h3>
-                        <span class="company">Swimage</span>
-                        <span class="period">Jun 2025 – Aug 2025</span>
-                    </div>
-                    <p class="exp-desc">Built Python data pipelines and multi-tenant auth.</p>
+
+                <div class="timeline">
+                    <article class="card card--decor-yellow timeline-item">
+                        <header class="timeline-head">
+                            <h3 class="timeline-role">Software Engineer</h3>
+                            <p class="timeline-meta"><span class="emph">Swimage</span> • Remote • Aug 2025 – Present</p>
+                        </header>
+                        <ul class="bullets">
+                            <li>Spearheaded backend migration of a legacy client portal to a modern Vue.js + FastAPI stack; improved API response times by <strong>40%</strong> via optimized SQL queries and efficient Pydantic serialization.</li>
+                            <li>Architected a full-stack interface (Python + Vue.js) to orchestrate remote OS and software installations across thousands of endpoint computers.</li>
+                            <li>Engineered an image-creation engine using modular building blocks and advanced flattening logic to compile and push deployment configurations efficiently.</li>
+                        </ul>
+                    </article>
+
+                    <article class="card card--decor-blue timeline-item">
+                        <header class="timeline-head">
+                            <h3 class="timeline-role">Full Stack Software Engineer Intern</h3>
+                            <p class="timeline-meta"><span class="emph">Swimage</span> • Jun 2025 – Aug 2025</p>
+                        </header>
+                        <ul class="bullets">
+                            <li>Engineered a scalable Python data pipeline for a core classification feature, integrating multiple LLM APIs (Google Gemini, OpenRouter).</li>
+                            <li>Reduced manual work time by <strong>80%</strong> by automating processing, classification, and insertion into an MS SQL database.</li>
+                            <li>Designed a secure multi-tenant auth system (FastAPI + JWT) using a bitmask-based permissions model for scalable role management.</li>
+                        </ul>
+                    </article>
+
+                    <article class="card card--decor-red timeline-item">
+                        <header class="timeline-head">
+                            <h3 class="timeline-role">Freelance Full Stack Developer</h3>
+                            <p class="timeline-meta"><span class="emph">ClipAndTrim.io</span> • Remote • Mar 2025 – Aug 2025</p>
+                        </header>
+                        <ul class="bullets">
+                            <li>Owned end-to-end delivery of a full-stack web app that lets users create, preview, and download YouTube clips from timestamps.</li>
+                            <li>Built a FastAPI backend with yt-dlp + FFmpeg; deployed on DigitalOcean and used Beam.cloud GPU acceleration for <strong>20×</strong> faster encoding than CPU-based processing.</li>
+                            <li>Implemented a responsive React/TypeScript frontend with Stripe + Google OAuth, processing user data and payments through Supabase.</li>
+                        </ul>
+                        <div class="card-actions">
+                            <a class="btn btn--outline btn--square" href="https://clipandtrim.io" target="_blank" rel="noopener noreferrer">Visit ClipAndTrim</a>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <!-- ClipAndTrim.io -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">ClipAndTrim.io</h3>
-                        <div class="project-status">
-                            <span class="status-dot active"></span>
-                            <span class="status-text">Live</span>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Create, preview, and download clips from YouTube timestamps with a FastAPI + FFmpeg backend and React frontend.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">FFmpeg</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Supabase</span>
-                        <span class="tech-tag">Stripe</span>
-                    </div>
-                    <div class="project-links">
-                        <a class="btn btn-outline" href="https://clipandtrim.io" target="_blank" rel="noopener noreferrer">Visit Site</a>
-                    </div>
+        <!-- PROJECTS -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Projects</h2>
+                    <p class="section-subtitle">Big ideas, sharp edges, real shipping.</p>
                 </div>
 
-                <!-- GatorBeachVolleyball.com -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">GatorBeachVolleyball.com</h3>
-                        <div class="project-status">
-                            <span class="status-dot active"></span>
-                            <span class="status-text">Live</span>
+                <div class="projects-grid">
+                    <article class="card card--decor-red project project--span">
+                        <header class="project-head">
+                            <h3 class="project-title">ClipAndTrim.io</h3>
+                            <span class="badge badge--live">Live</span>
+                        </header>
+                        <p class="project-body">Create, preview, and download clips from YouTube timestamps with a FastAPI + FFmpeg backend and a React/TypeScript frontend.</p>
+                        <div class="tag-row" aria-label="Tech stack">
+                            <span class="tag">FastAPI</span><span class="tag">FFmpeg</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Stripe</span>
                         </div>
-                    </div>
-                    <p class="project-description">
-                        Tournament management app with schedules, pools, and live standings; automated imports and bracket generation.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Vue.js</span>
-                        <span class="tech-tag">Supabase</span>
-                    </div>
-                    <div class="project-links">
-                        <a class="btn btn-outline" href="https://gatorbeachvolleyball.com" target="_blank" rel="noopener noreferrer">Visit Site</a>
-                    </div>
-                </div>
+                        <div class="card-actions">
+                            <a class="btn btn--red btn--square" href="https://clipandtrim.io" target="_blank" rel="noopener noreferrer">Visit Site</a>
+                        </div>
+                    </article>
 
-                <!-- GPT Model -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">GPT Model</h3>
-                        <div class="project-status">
-                            <span class="status-dot development"></span>
-                            <span class="status-text">Project</span>
+                    <article class="card card--decor-blue project">
+                        <header class="project-head">
+                            <h3 class="project-title">Gator Beach Volleyball Tournament App</h3>
+                            <span class="badge badge--metric">100 MAU</span>
+                        </header>
+                        <p class="project-body">Tournament management with schedules, pools, and live standings; automated imports and bracket generation.</p>
+                        <div class="tag-row">
+                            <span class="tag">Vue.js 3</span><span class="tag">TypeScript</span><span class="tag">Supabase</span>
                         </div>
-                    </div>
-                    <p class="project-description">
-                        Implemented a modular GPT model from scratch in PyTorch with efficient training and regularization.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">NLP</span>
-                    </div>
-                    <div class="project-links">
-                        <a class="btn btn-outline" id="gpt-details-btn" href="#">Details</a>
-                    </div>
-                </div>
-                <!-- Spotify Floater -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Spotify Floater</h3>
-                        <div class="project-status">
-                            <span class="status-dot development"></span>
-                            <span class="status-text">Project</span>
+                        <div class="card-actions">
+                            <a class="btn btn--outline btn--square" href="https://gatorbeachvolleyball.com" target="_blank" rel="noopener noreferrer">Visit Site</a>
                         </div>
-                    </div>
-                    <p class="project-description">
-                        Floating desktop widget for macOS that makes it super easy to quickly access Spotify.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Swift</span>
-                        <span class="tech-tag">SwiftUI</span>
-                        <span class="tech-tag">macOS</span>
-                        <span class="tech-tag">Spotify API</span>
-                        <span class="tech-tag">OAuth 2.0 PKCE</span>
-                        <span class="tech-tag">Keychain</span>
-                    </div>
-                    <div class="project-links">
-                        <a class="btn btn-outline" href="https://github.com/LukasKanopka/SpotifyFloater" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                    </div>
-                </div>
+                    </article>
 
-                <!-- Degrees of Spotify -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Degrees of Spotify</h3>
-                        <div class="project-status">
-                            <span class="status-dot development"></span>
-                            <span class="status-text">Project</span>
+                    <article class="card card--decor-yellow project">
+                        <header class="project-head">
+                            <h3 class="project-title">Programming Language Design & Implementation</h3>
+                            <span class="badge badge--project">Course</span>
+                        </header>
+                        <p class="project-body">Built a statically-typed language in Java: lexer, recursive-descent parser, type analyzer, tree-walk evaluator, and Java codegen.</p>
+                        <div class="tag-row">
+                            <span class="tag">Java</span><span class="tag">Compilers</span><span class="tag">Interpreters</span>
                         </div>
-                    </div>
-                    <p class="project-description">
-                        Project that calculates the degrees of separation between artists on Spotify through their song collaborations. Built with Python. Data from the Spotify API. Frontend using React.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Spotify API</span>
-                    </div>
-                    <div class="project-links">
-                        <a class="btn btn-outline" href="https://github.com/LukasKanopka/DegreesOfSpotifyWithFrontend" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                    </div>
+                    </article>
+
+                    <article class="card card--decor-red project">
+                        <header class="project-head">
+                            <h3 class="project-title">GPT Model</h3>
+                            <span class="badge badge--project">Personal</span>
+                        </header>
+                        <p class="project-body">A modular GPT model in PyTorch with an efficient training loop and dropout regularization.</p>
+                        <div class="tag-row">
+                            <span class="tag">PyTorch</span><span class="tag">Python</span><span class="tag">NLP</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn--outline btn--square" type="button" id="gpt-details-btn">Details</button>
+                        </div>
+                    </article>
+
+                    <article class="card card--decor-blue project">
+                        <header class="project-head">
+                            <h3 class="project-title">Spotify Floater</h3>
+                            <span class="badge badge--project">macOS</span>
+                        </header>
+                        <p class="project-body">A floating desktop widget for macOS that makes Spotify access instant.</p>
+                        <div class="tag-row">
+                            <span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">OAuth 2.0 PKCE</span>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn--outline btn--square" href="https://github.com/LukasKanopka/SpotifyFloater" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                        </div>
+                    </article>
+
+                    <article class="card card--decor-yellow project">
+                        <header class="project-head">
+                            <h3 class="project-title">Degrees of Spotify</h3>
+                            <span class="badge badge--project">Personal</span>
+                        </header>
+                        <p class="project-body">Calculates degrees of separation between artists via collaborations, using Spotify API data with a React frontend.</p>
+                        <div class="tag-row">
+                            <span class="tag">Python</span><span class="tag">React</span><span class="tag">Spotify API</span>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn btn--outline btn--square" href="https://github.com/LukasKanopka/DegreesOfSpotifyWithFrontend" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p class="contact-description">
-                        I'm always interested in new opportunities and exciting projects. 
-                        Whether you have a question or just want to say hi, feel free to reach out!
+        <!-- WRITING -->
+        <section id="writing" class="section section--blue">
+            <div class="container">
+                <div class="section-head section-head--oncolor">
+                    <h2 class="section-title section-title--oncolor">Writing</h2>
+                    <p class="section-subtitle section-subtitle--oncolor">A published take on real-world LLM intelligence.</p>
+                </div>
+
+                <article class="card card--decor-yellow writing-card">
+                    <header class="project-head">
+                        <h3 class="project-title">GraphRAG: A Massive Leap in LLM Real-World Intelligence</h3>
+                        <span class="badge badge--project">Intelligence • Q4 2025</span>
+                    </header>
+                    <p class="project-body">
+                        A short article exploring GraphRAG and how graph-structured retrieval can be used to organize context for LLM applications.
+                        It’s written for practitioners who want a practical mental model, not hype.
                     </p>
-                    <div class="contact-links">
-                        <a href="https://github.com/LukasKanopka" target="_blank" class="contact-link" onclick="console.log('DEBUG: GitHub link clicked - current: https://github.com/LukasKanopka')">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    <div class="card-actions">
+                        <a class="btn btn--blue btn--square" href="https://www.luc.edu/quinlan/whyquinlan/centersandlabs/labforappliedartificialintelligence/research/2025/4thquarter2025/graphragamassiveleapinllmreal-worldintelligence/" target="_blank" rel="noopener noreferrer">Read Publication</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- BENEFITS -->
+        <section id="benefits" class="section section--red">
+            <div class="container">
+                <div class="section-head section-head--oncolor">
+                    <h2 class="section-title section-title--oncolor">What I Bring</h2>
+                    <p class="section-subtitle section-subtitle--oncolor">Bold execution with clean edges.</p>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit card card--decor-yellow">
+                        <div class="benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter">
+                                <path d="M20 6 9 17l-5-5"></path>
                             </svg>
-                            <span>GitHub</span>
-                        </a>
-                        <a href="mailto:lukaskanopka@icloud.com" class="contact-link" onclick="console.log('DEBUG: Email link clicked - current: lukaskanopka@icloud.com')">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </div>
+                        <div>
+                            <div class="benefit-title">Production full-stack delivery</div>
+                            <div class="benefit-body">From UI → API → database, shipped in real environments.</div>
+                        </div>
+                    </div>
+                    <div class="benefit card card--decor-blue">
+                        <div class="benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter">
+                                <path d="M20 6 9 17l-5-5"></path>
                             </svg>
-                            <span>Email</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/laurynaskanopka/" target="_blank" class="contact-link" onclick="console.log('DEBUG: LinkedIn link clicked - current: https://www.linkedin.com/in/laurynaskanopka/')">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </div>
+                        <div>
+                            <div class="benefit-title">Performance-focused APIs + pipelines</div>
+                            <div class="benefit-body">Optimized SQL, efficient serialization, automated workflows.</div>
+                        </div>
+                    </div>
+                    <div class="benefit card card--decor-red">
+                        <div class="benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter">
+                                <path d="M20 6 9 17l-5-5"></path>
                             </svg>
-                            <span>LinkedIn</span>
-                        </a>
+                        </div>
+                        <div>
+                            <div class="benefit-title">Practical ML integration</div>
+                            <div class="benefit-body">LLM APIs, PyTorch training loops, real constraints.</div>
+                        </div>
+                    </div>
+                    <div class="benefit card card--decor-yellow">
+                        <div class="benefit-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter">
+                                <path d="M20 6 9 17l-5-5"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="benefit-title">Clean UI systems + UX</div>
+                            <div class="benefit-body">Design systems, accessibility, and intentional interaction.</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="footer-text">
-                    © 2025 Lukas Kanopka. 😎
-                </p>
-                <div class="footer-links">
-                    <a href="#home" class="footer-link">Home</a>
-                    <a href="#about" class="footer-link">About</a>
-                    <a href="#projects" class="footer-link">Projects</a>
-                    <a href="#contact" class="footer-link">Contact</a>
+        <!-- CONTACT -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-subtitle">Let’s talk. Crisp, simple, direct.</p>
                 </div>
+
+                <div class="contact-grid">
+                    <div class="card card--decor-blue contact-card">
+                        <h3 class="card-title">Reach me</h3>
+                        <div class="contact-row">
+                            <div class="contact-label">Email</div>
+                            <div class="contact-value"><a class="link" href="mailto:lukaskanopka@icloud.com">lukaskanopka@icloud.com</a></div>
+                            <button class="btn btn--outline btn--pill copy-btn" type="button" data-copy="lukaskanopka@icloud.com">Copy</button>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-label">GitHub</div>
+                            <div class="contact-value"><a class="link" href="https://github.com/lukaskanopka" target="_blank" rel="noopener noreferrer">github.com/lukaskanopka</a></div>
+                            <span></span>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-label">LinkedIn</div>
+                            <div class="contact-value"><a class="link" href="https://www.linkedin.com/in/laurynaskanopka/" target="_blank" rel="noopener noreferrer">linkedin.com/in/laurynaskanopka</a></div>
+                            <span></span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a class="btn btn--red btn--square" href="mailto:lukaskanopka@icloud.com">Email Me</a>
+                            <a class="btn btn--blue btn--square" href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+                        </div>
+                    </div>
+
+                    <div class="card card--decor-yellow contact-card">
+                        <h3 class="card-title">FAQ</h3>
+                        <div class="faq">
+                            <details class="faq-item">
+                                <summary>What roles are you targeting?</summary>
+                                <div class="faq-body">Entry-level Software Engineer roles where I can ship full-stack work and grow fast.</div>
+                            </details>
+                            <details class="faq-item">
+                                <summary>What stack do you like most?</summary>
+                                <div class="faq-body">Python/FastAPI + Vue/React, with SQL at the core. I also enjoy practical ML work when it connects to product.</div>
+                            </details>
+                            <details class="faq-item">
+                                <summary>When do you graduate?</summary>
+                                <div class="faq-body">Expected May 2026 (University of Florida).</div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section id="cta" class="section section--yellow">
+            <div class="container cta-final">
+                <div>
+                    <p class="overline">Final CTA</p>
+                    <h2 class="display display--sm">Let’s build something bold.</h2>
+                    <p class="lead">If you’re hiring or collaborating, I’d love to talk.</p>
+                </div>
+                <div class="cta-row">
+                    <a class="btn btn--red btn--square" href="mailto:lukaskanopka@icloud.com">Email</a>
+                    <a class="btn btn--blue btn--square" href="https://www.linkedin.com/in/laurynaskanopka/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a class="btn btn--outline btn--square" href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer section--dark">
+        <div class="container footer-inner">
+            <div class="footer-brand" aria-hidden="true">
+                <span class="mark mark--circle"></span>
+                <span class="mark mark--square"></span>
+                <span class="mark mark--triangle"></span>
+            </div>
+            <p class="footer-text">© 2026 Lukas Kanopka.</p>
+            <div class="footer-links">
+                <a class="footer-link" href="#home">Home</a>
+                <a class="footer-link" href="#projects">Projects</a>
+                <a class="footer-link" href="#contact">Contact</a>
             </div>
         </div>
     </footer>
 
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
     <!-- GPT Model Details Modal -->
     <div id="gpt-modal" class="modal-overlay" aria-hidden="true">
         <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="gpt-modal-title">
-            <button class="modal-close" aria-label="Close">&times;</button>
-            <h3 id="gpt-modal-title">Generative Pretrained Transformer (GPT) Model</h3>
-            <ul class="modal-list">
-                <li>Developed a fully functional GPT model from scratch in PyTorch, translating the "Attention Is All You Need" research paper into a modular and well-documented codebase.</li>
-                <li>Engineered an efficient training loop with batch processing and dropout regularization, resulting in a 15% reduction in validation loss and improved performance.</li>
+            <button class="modal-close btn btn--outline btn--pill" type="button" aria-label="Close dialog">Close</button>
+            <h3 id="gpt-modal-title" class="modal-title">Generative Pretrained Transformer (GPT) Model</h3>
+            <ul class="bullets">
+                <li>Developed a GPT model from scratch in PyTorch, translating core ideas from “Attention Is All You Need” into a modular codebase.</li>
+                <li>Engineered an efficient training loop with batch processing and dropout regularization, resulting in a 15% reduction in validation loss.</li>
             </ul>
         </div>
     </div>

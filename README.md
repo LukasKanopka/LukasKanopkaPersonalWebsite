@@ -1,6 +1,6 @@
-# 😎 😎 Lukas Kanopka - Personal Portfolio Website 😎 😎
+# Lukas Kanopka — Personal Portfolio Website
 
-A modern, responsive personal portfolio website built with a custom **retro-futuristic design system**, featuring smooth animations and interactive elements.
+A modern, responsive personal portfolio website built with a custom **Bauhaus-inspired design system** (bold geometry, primary color blocking, thick borders, hard shadows), featuring interactive elements and strong typography.
 
 ---
 
