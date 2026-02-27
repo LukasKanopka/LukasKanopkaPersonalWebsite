@@ -71,18 +71,35 @@
                 </div>
 
                 <div class="hero-panel section--blue">
-                    <div class="composition" id="hero-composition" aria-label="Interactive geometric composition">
-                        <button class="shape shape--circle is-active" type="button" data-shape="circle" aria-label="Highlight circle"></button>
-                        <button class="shape shape--square" type="button" data-shape="square" aria-label="Highlight square"></button>
-                        <button class="shape shape--square-rot" type="button" data-shape="rot" aria-label="Highlight rotated square"></button>
-                        <button class="shape shape--triangle" type="button" data-shape="tri" aria-label="Highlight triangle"></button>
-                        <div class="composition-caption" aria-hidden="true">
-                            Move / tap shapes
+                    <div class="terminal" aria-label="Interactive terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-controls" aria-hidden="true">
+                                <span class="ctl ctl--red"></span>
+                                <span class="ctl ctl--yellow"></span>
+                                <span class="ctl ctl--blue"></span>
+                            </div>
+                            <div class="terminal-title">lukas@portfolio:~$</div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+                        <div class="terminal-body" id="terminal-body" role="log" aria-live="polite" aria-relevant="additions text">
+	                            <div class="terminal-line terminal-input-line" id="terminal-input-line">
+	                                <span class="terminal-prompt" aria-hidden="true">$</span>
+	                                <input
+	                                    type="text"
+	                                    class="terminal-input"
+	                                    id="terminal-input"
+	                                    autocomplete="off"
+	                                    spellcheck="false"
+	                                    aria-label="Terminal command"
+	                                    placeholder="Type 'help'…"
+	                                />
+	                                <span class="terminal-cursor" aria-hidden="true">_</span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </section>
 
         <!-- STATS -->
         <section id="stats" class="section section--yellow">

@@ -99,67 +99,428 @@ function initScrollSpy() {
   sections.forEach((section) => observer.observe(section));
 }
 
-function initComposition() {
-  const composition = $("#hero-composition");
-  if (!composition) return;
+function initTerminal() {
+  const input = $("#terminal-input");
+  const body = $("#terminal-body");
+  const inputLine = $("#terminal-input-line");
 
-  const shapes = $all(".shape", composition);
-  if (shapes.length === 0) return;
+  if (!input || !body || !inputLine) return;
 
-  const setActive = (shape) => {
-    shapes.forEach((s) => s.classList.remove("is-active"));
-    shape.classList.add("is-active");
+  const graphragUrl =
+    "https://www.luc.edu/quinlan/whyquinlan/centersandlabs/labforappliedartificialintelligence/research/2025/4thquarter2025/graphragamassiveleapinllmreal-worldintelligence/";
+  const resumeUrl = "assets/resume.pdf";
+
+  const commands = [
+    "help",
+    "whoami",
+    "stats",
+    "skills",
+    "experience",
+    "projects",
+    "writing",
+    "contact",
+    "resume",
+    "go",
+    "open",
+    "copy",
+    "clear",
+    "banner",
+  ];
+
+  const goTargets = {
+    home: "#home",
+    about: "#about",
+    experience: "#experience",
+    projects: "#projects",
+    writing: "#writing",
+    contact: "#contact",
+    cta: "#cta",
   };
 
-  shapes.forEach((shape) => {
-    shape.addEventListener("click", (event) => {
-      event.stopPropagation();
-      setActive(shape);
-    });
-  });
-
-  composition.addEventListener("click", () => {
-    const currentIndex = shapes.findIndex((s) => s.classList.contains("is-active"));
-    const next = shapes[(currentIndex + 1) % shapes.length] || shapes[0];
-    setActive(next);
-  });
-
-  if (prefersReducedMotion.matches) return;
-
-  let pending = false;
-  let px = 0;
-  let py = 0;
-
-  const update = () => {
-    pending = false;
-    composition.style.setProperty("--px", String(px));
-    composition.style.setProperty("--py", String(py));
+  const openTargets = {
+    resume: resumeUrl,
+    graphrag: graphragUrl,
+    clipandtrim: "https://clipandtrim.io",
+    gator: "https://gatorbeachvolleyball.com",
+    linkedin: "https://www.linkedin.com/in/laurynaskanopka/",
+    github: "https://github.com/lukaskanopka",
   };
 
-  const onMove = (event) => {
-    const rect = composition.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    const dx = (x / rect.width - 0.5) * 2;
-    const dy = (y / rect.height - 0.5) * 2;
-    px = Math.round(dx * 18);
-    py = Math.round(dy * 18);
+  const history = [];
+  let historyIndex = -1;
 
-    if (!pending) {
-      pending = true;
-      window.requestAnimationFrame(update);
+  const scrollToBottom = () => {
+    body.scrollTop = body.scrollHeight;
+  };
+
+  const insertBeforeInput = (node) => {
+    body.insertBefore(node, inputLine);
+  };
+
+  const addLine = (kind, text) => {
+    const line = document.createElement("div");
+    line.className = `terminal-line terminal-line--${kind}`;
+    line.textContent = text;
+    insertBeforeInput(line);
+    scrollToBottom();
+  };
+
+  const addBlock = (kind, text) => {
+    const block = document.createElement("div");
+    block.className = `terminal-block terminal-block--${kind}`;
+    block.textContent = text;
+    insertBeforeInput(block);
+    scrollToBottom();
+  };
+
+  const addDivider = () => {
+    const hr = document.createElement("div");
+    hr.className = "terminal-divider";
+    insertBeforeInput(hr);
+    scrollToBottom();
+  };
+
+  const computeSuggestion = (value) => {
+    const v = value.trim();
+    if (!v) return "";
+
+    const [head, ...rest] = v.split(/\s+/);
+    const cmd = head.toLowerCase();
+
+    if (rest.length === 0) {
+      const match = commands.find((c) => c.startsWith(cmd));
+      if (match && match !== cmd) return match.slice(cmd.length);
+      return "";
+    }
+
+    if (cmd === "go") {
+      const partial = rest.join(" ").toLowerCase();
+      const match = Object.keys(goTargets).find((k) => k.startsWith(partial));
+      if (match && match !== partial) return match.slice(partial.length);
+    }
+
+    if (cmd === "open") {
+      const partial = rest.join(" ").toLowerCase();
+      const match = Object.keys(openTargets).find((k) => k.startsWith(partial));
+      if (match && match !== partial) return match.slice(partial.length);
+    }
+
+    if (cmd === "copy") {
+      const partial = rest.join(" ").toLowerCase();
+      const options = ["email", "github", "linkedin"];
+      const match = options.find((k) => k.startsWith(partial));
+      if (match && match !== partial) return match.slice(partial.length);
+    }
+
+    return "";
+  };
+
+  const setInputFromHistory = (index) => {
+    const value = history[index] || "";
+    input.value = value;
+    input.setSelectionRange(value.length, value.length);
+  };
+
+  const openUrl = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const doGo = (target) => {
+    const href = goTargets[target];
+    if (!href) return false;
+    const el = $(href);
+    if (!el) return false;
+    el.scrollIntoView({ behavior: prefersReducedMotion.matches ? "auto" : "smooth", block: "start" });
+    return true;
+  };
+
+  const doCopy = async (value) => {
+    try {
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        await navigator.clipboard.writeText(value);
+        return true;
+      }
+    } catch {
+      // ignore
+    }
+
+    const inputEl = document.createElement("input");
+    inputEl.value = value;
+    inputEl.setAttribute("readonly", "true");
+    inputEl.style.position = "fixed";
+    inputEl.style.left = "-9999px";
+    document.body.appendChild(inputEl);
+    inputEl.select();
+    try {
+      document.execCommand("copy");
+      return true;
+    } catch {
+      return false;
+    } finally {
+      inputEl.remove();
     }
   };
 
-  composition.addEventListener("pointermove", onMove);
-  composition.addEventListener("pointerleave", () => {
-    px = 0;
-    py = 0;
-    if (!pending) {
-      pending = true;
-      window.requestAnimationFrame(update);
+  const banner = () => {
+    return [
+      "┌───────────────────────────────┐",
+      "│             LUKAS              │",
+      "├───────────────────────────────┤",
+      "│  type 'help' to explore        │",
+      "└───────────────────────────────┘",
+    ].join("\n");
+  };
+
+  const helpText = () => {
+    return [
+      "Commands",
+      "  • help — show this help",
+      "  • whoami — quick summary",
+      "  • stats — metrics snapshot",
+      "  • skills — skills overview",
+      "  • experience — work experience summary",
+      "  • projects — project shortlist",
+      "  • writing — publication + link",
+      "  • contact — contact methods",
+      "  • resume — open resume PDF",
+      "  • go <section> — jump (home/about/experience/projects/writing/contact/cta)",
+      "  • open <thing> — open (resume/graphrag/clipandtrim/gator/github/linkedin)",
+      "  • copy <thing> — copy (email/github/linkedin)",
+      "  • clear — clear terminal",
+      "  • banner — show banner art",
+      "",
+      "Tips",
+      "  • Enter runs • Tab completes • ↑/↓ history",
+    ].join("\n");
+  };
+
+  const whoamiText = () =>
+    [
+      "Lukas Kanopka",
+      "Software Engineer — full-stack (Python/FastAPI/Vue) + applied ML.",
+      "I like performance, clean UX, and shipping systems end-to-end.",
+    ].join("\n");
+
+  const statsText = () =>
+    [
+      "40% faster API responses (Swimage)",
+      "80% less manual work (classification pipeline)",
+      "20× faster encoding (ClipAndTrim)",
+      "3.96 GPA (UF, CS • Minor Statistics)",
+    ].join("\n");
+
+  const skillsText = () =>
+    [
+      "Languages: Python, Java, C++, SQL, R, JavaScript",
+      "Web: FastAPI, Flask, Vue.js, React, Node.js, Pydantic, SQLAlchemy",
+      "Tools/Cloud/ML: Git, Docker, Google Cloud, DigitalOcean, Netlify, PyTorch, Scikit-learn, Pandas, NumPy, SpaCy",
+    ].join("\n");
+
+  const experienceText = () =>
+    [
+      "Swimage — Software Engineer (Aug 2025–Present)",
+      "  - Migrated legacy portal to Vue.js + FastAPI; 40% faster APIs",
+      "  - Orchestrated remote OS/software installs at scale",
+      "",
+      "Swimage — Full Stack SWE Intern (Jun 2025–Aug 2025)",
+      "  - Python pipeline integrating Gemini + OpenRouter",
+      "  - Multi-tenant auth (JWT + bitmask permissions)",
+      "",
+      "ClipAndTrim.io — Freelance Full Stack Developer (Mar 2025–Aug 2025)",
+      "  - FastAPI + FFmpeg + GPU acceleration; 20× faster encoding",
+    ].join("\n");
+
+  const projectsText = () =>
+    [
+      "Projects:",
+      "  - clipandtrim      (open clipandtrim)",
+      "  - gator            (open gator)",
+      "  - gpt model        (see Projects section; details modal)",
+      "  - spotify floater  (GitHub)",
+      "  - degrees of spotify (GitHub)",
+      "",
+      "Try: go projects",
+    ].join("\n");
+
+  const writingText = () =>
+    [
+      "GraphRAG: A Massive Leap in LLM Real-World Intelligence",
+      "Intelligence • Q4 2025",
+      "",
+      "Open it: open graphrag",
+    ].join("\n");
+
+  const contactText = () =>
+    [
+      "Email:    lukaskanopka@icloud.com  (copy email)",
+      "GitHub:   github.com/lukaskanopka  (open github | copy github)",
+      "LinkedIn: linkedin.com/in/laurynaskanopka  (open linkedin | copy linkedin)",
+    ].join("\n");
+
+  const run = async (raw) => {
+    const command = raw.trim();
+    if (!command) return;
+    addLine("prompt", `$ ${command}`);
+
+    const parts = command.split(/\s+/);
+    const head = (parts[0] || "").toLowerCase();
+    const args = parts.slice(1);
+
+    switch (head) {
+      case "help":
+        addBlock("output", helpText());
+        return;
+      case "banner":
+        addBlock("output", banner());
+        return;
+      case "whoami":
+        addBlock("output", whoamiText());
+        return;
+      case "stats":
+        addBlock("output", statsText());
+        return;
+      case "skills":
+        addBlock("output", skillsText());
+        return;
+      case "experience":
+        addBlock("output", experienceText());
+        return;
+      case "projects":
+        addBlock("output", projectsText());
+        return;
+      case "writing":
+        addBlock("output", writingText());
+        return;
+      case "contact":
+        addBlock("output", contactText());
+        return;
+      case "resume":
+        openUrl(resumeUrl);
+        addBlock("output", "Opened: resume");
+        return;
+      case "go": {
+        const target = (args[0] || "").toLowerCase();
+        if (!target) {
+          addBlock("error", "Usage: go <home|about|experience|projects|writing|contact|cta>");
+          return;
+        }
+        if (doGo(target)) {
+          addBlock("output", `Jumped to: ${target}`);
+          return;
+        }
+        addBlock("error", `Unknown section: ${target}`);
+        return;
+      }
+      case "open": {
+        const target = (args[0] || "").toLowerCase();
+        if (!target) {
+          addBlock("error", "Usage: open <resume|graphrag|clipandtrim|gator|github|linkedin>");
+          return;
+        }
+        const url = openTargets[target];
+        if (!url) {
+          addBlock("error", `Unknown link: ${target}`);
+          return;
+        }
+        openUrl(url);
+        addBlock("output", `Opened: ${target}`);
+        return;
+      }
+      case "copy": {
+        const target = (args[0] || "").toLowerCase();
+        const map = {
+          email: "lukaskanopka@icloud.com",
+          github: "https://github.com/lukaskanopka",
+          linkedin: "https://www.linkedin.com/in/laurynaskanopka/",
+        };
+        const value = map[target];
+        if (!value) {
+          addBlock("error", "Usage: copy <email|github|linkedin>");
+          return;
+        }
+        const ok = await doCopy(value);
+        addBlock("output", ok ? `Copied: ${target}` : "Copy failed");
+        if (ok) toast.show("Copied to clipboard");
+        return;
+      }
+      case "clear":
+        body.replaceChildren(inputLine);
+        return;
+      default:
+        addBlock("error", `Command not found: ${head}. Type 'help'.`);
+        return;
+    }
+  };
+
+  const completeFromGhost = () => {
+    const suggestion = computeSuggestion(input.value);
+    if (!suggestion) return false;
+    input.value = input.value + suggestion;
+    return true;
+  };
+
+  const printIntro = async () => {
+    addBlock("output", banner());
+    addDivider();
+    addBlock("output", "Try: help • go projects • open resume • copy email");
+  };
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const value = input.value;
+      if (!value.trim()) return;
+      history.unshift(value);
+      historyIndex = -1;
+      if (history.length > 30) history.pop();
+      input.value = "";
+      void run(value);
+      return;
+    }
+
+    if (event.key === "Tab") {
+      event.preventDefault();
+      if (!completeFromGhost()) toast.show("No completion");
+      return;
+    }
+
+    if (event.key === "ArrowUp") {
+      if (history.length === 0) return;
+      event.preventDefault();
+      historyIndex = Math.min(historyIndex + 1, history.length - 1);
+      setInputFromHistory(historyIndex);
+      return;
+    }
+
+    if (event.key === "ArrowDown") {
+      if (history.length === 0) return;
+      event.preventDefault();
+      historyIndex = Math.max(historyIndex - 1, -1);
+      if (historyIndex === -1) {
+        input.value = "";
+      } else {
+        setInputFromHistory(historyIndex);
+      }
     }
   });
+
+  document.addEventListener("keydown", (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+      event.preventDefault();
+      input.focus();
+    }
+  });
+
+  body.addEventListener("click", () => {
+    input.focus();
+  });
+
+  // Auto focus on load (desktop only-ish)
+  window.setTimeout(() => {
+    input.focus();
+  }, 350);
+
+  void printIntro();
 }
 
 function initCopyButtons() {
@@ -288,8 +649,7 @@ function initModal() {
 document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initScrollSpy();
-  initComposition();
+  initTerminal();
   initCopyButtons();
   initModal();
 });
-
