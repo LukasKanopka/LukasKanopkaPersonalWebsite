@@ -71,35 +71,82 @@
                 </div>
 
                 <div class="hero-panel section--blue">
-                    <div class="terminal" aria-label="Interactive terminal">
-                        <div class="terminal-header">
-                            <div class="terminal-controls" aria-hidden="true">
-                                <span class="ctl ctl--red"></span>
-                                <span class="ctl ctl--yellow"></span>
-                                <span class="ctl ctl--blue"></span>
+                    <div class="hero-carousel" id="hero-carousel" role="region" aria-label="Hero carousel" tabindex="0">
+                        <div class="carousel-viewport" id="hero-carousel-viewport" aria-live="polite">
+                            <div class="carousel-slide" data-carousel-slide>
+                                <div class="terminal" aria-label="Interactive terminal">
+                                    <div class="terminal-header">
+                                        <div class="terminal-controls" aria-hidden="true">
+                                            <span class="ctl ctl--red"></span>
+                                            <span class="ctl ctl--yellow"></span>
+                                            <span class="ctl ctl--blue"></span>
+                                        </div>
+                                        <div class="terminal-title">lukas@portfolio:~$</div>
+                                    </div>
+
+                                    <div class="terminal-body" id="terminal-body" role="log" aria-live="polite" aria-relevant="additions text">
+                                        <div class="terminal-line terminal-input-line" id="terminal-input-line">
+                                            <span class="terminal-prompt" aria-hidden="true">$</span>
+                                            <input
+                                                type="text"
+                                                class="terminal-input"
+                                                id="terminal-input"
+                                                autocomplete="off"
+                                                spellcheck="false"
+                                                aria-label="Terminal command"
+                                                placeholder="Type 'help'…"
+                                            />
+                                            <span class="terminal-cursor" aria-hidden="true">_</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="terminal-title">lukas@portfolio:~$</div>
+
+                            <div class="carousel-slide" data-carousel-slide>
+                                <figure class="portrait-frame">
+                                    <img src="images/BauhausPortrait.jpg" alt="Self portrait" loading="lazy" decoding="async" width="2400" height="1792" />
+                                    <figcaption class="portrait-caption">Self portrait study</figcaption>
+                                </figure>
+                            </div>
+
+                            <div class="carousel-slide" data-carousel-slide>
+                                <div class="poster-frame" aria-label="Poster composition">
+                                    <div class="poster-grid" aria-hidden="true">
+                                        <div class="poster-shape poster-shape--circle"></div>
+                                        <div class="poster-shape poster-shape--square"></div>
+                                        <div class="poster-shape poster-shape--tri"></div>
+                                    </div>
+                                    <div class="poster-copy">
+                                        <div class="poster-kicker">Quick jump</div>
+                                        <div class="poster-title">Build. Ship. Repeat.</div>
+                                        <div class="poster-links">
+                                            <a class="poster-link" href="#projects">/projects</a>
+                                            <a class="poster-link" href="#experience">/experience</a>
+                                            <a class="poster-link" href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">/resume</a>
+                                        </div>
+                                        <div class="poster-meta">Swipe or use arrows</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="terminal-body" id="terminal-body" role="log" aria-live="polite" aria-relevant="additions text">
-	                            <div class="terminal-line terminal-input-line" id="terminal-input-line">
-	                                <span class="terminal-prompt" aria-hidden="true">$</span>
-	                                <input
-	                                    type="text"
-	                                    class="terminal-input"
-	                                    id="terminal-input"
-	                                    autocomplete="off"
-	                                    spellcheck="false"
-	                                    aria-label="Terminal command"
-	                                    placeholder="Type 'help'…"
-	                                />
-	                                <span class="terminal-cursor" aria-hidden="true">_</span>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </section>
+                        <div class="carousel-toolbar" aria-label="Carousel controls">
+                            <button class="carousel-btn" type="button" data-carousel-prev aria-label="Previous slide">
+                                <span aria-hidden="true">‹</span>
+                            </button>
+                            <div class="carousel-dots" role="tablist" aria-label="Slides">
+                                <button class="carousel-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Terminal" data-carousel-dot="0"></button>
+                                <button class="carousel-dot" type="button" role="tab" aria-selected="false" aria-label="Portrait" data-carousel-dot="1"></button>
+                                <button class="carousel-dot" type="button" role="tab" aria-selected="false" aria-label="Poster" data-carousel-dot="2"></button>
+                            </div>
+                            <button class="carousel-btn" type="button" data-carousel-next aria-label="Next slide">
+                                <span aria-hidden="true">›</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- STATS -->
         <section id="stats" class="section section--yellow">

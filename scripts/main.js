@@ -27,6 +27,143 @@ function createToast() {
 
 const toast = createToast();
 
+function initHeroCarousel() {
+  const root = $("#hero-carousel");
+  const viewport = $("#hero-carousel-viewport");
+  if (!root || !viewport) return;
+
+  const slides = $all("[data-carousel-slide]", viewport);
+  const dots = $all("[data-carousel-dot]", root);
+  const prev = $("[data-carousel-prev]", root);
+  const next = $("[data-carousel-next]", root);
+
+  if (slides.length === 0) return;
+
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+  const setInert = (element, isInert) => {
+    if (!element) return;
+    if ("inert" in element) {
+      element.inert = isInert;
+      return;
+    }
+    element.setAttribute("aria-hidden", isInert ? "true" : "false");
+  };
+
+  slides.forEach((slide, i) => {
+    slide.dataset.carouselIndex = String(i);
+  });
+
+  let order = slides.slice();
+
+  const applySlots = () => {
+    const slots = ["front", "mid", "back"];
+    order.forEach((slide, i) => {
+      slide.dataset.slot = slots[i] || "back";
+      slide.style.pointerEvents = i === 0 ? "auto" : "none";
+      setInert(slide, i !== 0);
+    });
+
+    const frontIndex = Number.parseInt(order[0]?.dataset.carouselIndex || "0", 10) || 0;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("is-active", i === frontIndex);
+      dot.setAttribute("aria-selected", i === frontIndex ? "true" : "false");
+    });
+  };
+
+  const rotateNext = () => {
+    order.push(order.shift());
+    applySlots();
+  };
+
+  const rotatePrev = () => {
+    order.unshift(order.pop());
+    applySlots();
+  };
+
+  const goTo = (index) => {
+    const n = slides.length;
+    const target = ((index % n) + n) % n;
+    const current = Number.parseInt(order[0]?.dataset.carouselIndex || "0", 10) || 0;
+    if (target === current) return;
+
+    const forward = (target - current + n) % n;
+    const backward = (current - target + n) % n;
+    const steps = Math.min(forward, backward);
+    const dir = forward <= backward ? "next" : "prev";
+
+    for (let i = 0; i < steps; i++) {
+      if (dir === "next") order.push(order.shift());
+      else order.unshift(order.pop());
+    }
+    applySlots();
+  };
+
+  if (prev) prev.addEventListener("click", rotatePrev);
+  if (next) next.addEventListener("click", rotateNext);
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const raw = dot.getAttribute("data-carousel-dot") || "0";
+      const index = Number.parseInt(raw, 10);
+      goTo(Number.isFinite(index) ? index : 0);
+    });
+  });
+
+  // Swipe gestures (avoid interfering with terminal)
+  let pointerStartX = 0;
+  let pointerStartY = 0;
+  let pointerId = null;
+  let dragging = false;
+
+  const onPointerDown = (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (target?.closest(".terminal")) return;
+    pointerId = event.pointerId;
+    pointerStartX = event.clientX;
+    pointerStartY = event.clientY;
+    dragging = true;
+  };
+
+  const onPointerUp = (event) => {
+    if (!dragging || pointerId !== event.pointerId) return;
+    dragging = false;
+    pointerId = null;
+
+    const dx = event.clientX - pointerStartX;
+    const dy = event.clientY - pointerStartY;
+
+    // Ignore mostly-vertical gestures (page scroll)
+    if (Math.abs(dy) > Math.abs(dx)) return;
+
+    const threshold = 42;
+    if (dx <= -threshold) rotateNext();
+    if (dx >= threshold) rotatePrev();
+  };
+
+  viewport.addEventListener("pointerdown", onPointerDown, { passive: true });
+  viewport.addEventListener("pointerup", onPointerUp, { passive: true });
+
+  root.addEventListener("keydown", (event) => {
+    const target = event.target;
+    if (target instanceof HTMLElement) {
+      const tag = target.tagName.toLowerCase();
+      if (tag === "input" || tag === "textarea" || target.isContentEditable) return;
+    }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      rotatePrev();
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      rotateNext();
+    }
+  });
+
+  // Initialize slots
+  applySlots();
+}
+
 function initMobileNav() {
   const toggle = $(".nav-toggle");
   const menu = $("#nav-menu");
@@ -650,6 +787,7 @@ function initModal() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initHeroCarousel();
   initMobileNav();
   initScrollSpy();
   initTerminal();
